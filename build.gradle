@@ -1,0 +1,122 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'com.jfrog.bintray'
+
+version = 2.7
+group = 'cn.saymagic'
+archivesBaseName = 'bluefin-plugin'
+def siteUrl = 'https://github.com/bluefinframework/bluefin-gradle-plugin/'
+def gitUrl = 'https://github.com/bluefinframework/bluefin-gradle-plugin.git'
+
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'jar'
+                artifactId 'bluefin-plugin'
+                name 'bluefin-plugin'
+                url siteUrl
+                developers {
+
+                    developer {
+                        id 'saymagic'
+                        name 'saymagic'
+                        email 'saymagic.dev@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'javadoc'
+    from "${buildDir}/javadoc"
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task createPom {
+    pom {
+        project {
+            packaging 'jar'
+            artifactId 'bluefin-plugin'
+            name 'bluefin-plugin'
+            description 'Gradle plugin for Bluefin server to upload apk and mapping file'
+            url siteUrl
+            inceptionYear '2016'
+
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+            developers {
+                developer {
+                    id 'saymagic'
+                    name 'saymagic'
+                    email 'saymagic.dev@gmail.com'
+                }
+            }
+        }
+    }.writeTo("$buildDir/poms/pom-default.xml").writeTo("pom.xml")
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+build.dependsOn createPom
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "bluefin-plugin"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        publish = true
+    }
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'file:../lib')
+    }
+}
