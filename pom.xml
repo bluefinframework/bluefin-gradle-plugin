@@ -3,9 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>cn.saymagic</groupId>
-  <artifactId>bluefin-plugin</artifactId>
-  <version>2.7</version>
-  <name>bluefin-plugin</name>
+  <artifactId>bluefin-gradle-plugin</artifactId>
+  <version>2.8</version>
+  <name>bluefin-gradle-plugin</name>
   <description>Gradle plugin for Bluefin server to upload apk and mapping file</description>
   <url>https://github.com/bluefinframework/bluefin-gradle-plugin/</url>
   <inceptionYear>2016</inceptionYear>

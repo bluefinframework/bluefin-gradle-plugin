@@ -17,9 +17,9 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = 2.7
+version = 2.8
 group = 'cn.saymagic'
-archivesBaseName = 'bluefin-plugin'
+archivesBaseName = 'bluefin-gradle-plugin'
 def siteUrl = 'https://github.com/bluefinframework/bluefin-gradle-plugin/'
 def gitUrl = 'https://github.com/bluefinframework/bluefin-gradle-plugin.git'
 
@@ -35,8 +35,8 @@ install {
         pom {
             project {
                 packaging 'jar'
-                artifactId 'bluefin-plugin'
-                name 'bluefin-plugin'
+                artifactId 'bluefin-gradle-plugin'
+                name 'bluefin-gradle-plugin'
                 url siteUrl
                 developers {
 
@@ -70,8 +70,8 @@ task createPom {
     pom {
         project {
             packaging 'jar'
-            artifactId 'bluefin-plugin'
-            name 'bluefin-plugin'
+            artifactId 'bluefin-gradle-plugin'
+            name 'bluefin-gradle-plugin'
             description 'Gradle plugin for Bluefin server to upload apk and mapping file'
             url siteUrl
             inceptionYear '2016'
@@ -108,7 +108,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "bluefin-plugin"
+        name = "bluefin-gradle-plugin"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         publish = true

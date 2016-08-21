@@ -3,15 +3,15 @@
 
 ## Install
 
-* 在rootProject的dependencies中添加
+* Add the dependencies in rootProject:
 
-		classpath 'cn.saymagic:bluefin-plugin:2.7'
+		classpath 'cn.saymagic:bluefin-gradle-plugin:2.8'
 	
-* 项目中引用插件
+* Referenced the plugin in project:
 
 		apply plugin: 'bluefin-plugin'
 	
-* 项目中添加bluefin的描述：
+* Add bluefin description in gradle file:
 
 		bluefin{
     		host = '***'
