@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/bluefinframework/bluefin-gradle-plugin.svg?branch=master)](https://travis-ci.org/bluefinframework/bluefin-gradle-plugin)
 
 > Gradle plugin for Bluefin server to upload apk and mapping file.
 
