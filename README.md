@@ -5,7 +5,7 @@
 
 * Add the dependencies in rootProject:
 
-		classpath 'cn.saymagic:bluefin-gradle-plugin:2.8'
+		classpath 'cn.saymagic:bluefin-gradle-plugin:2.8.1'
 	
 * Referenced the plugin in project:
 

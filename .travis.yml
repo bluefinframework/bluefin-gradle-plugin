@@ -1,0 +1,26 @@
+language: groovy
+
+jdk:
+  - oraclejdk8
+  
+cache: false
+sudo: required
+
+before_install:
+- chmod +x gradlew
+
+script:
+- "./gradlew build"
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: ${ACCESS_TOKEN}
+  file: build/libs/bluefin-gradle-plugin-*.jar
+  on:
+    tags: true
+    all_branches: true
+
+after_deploy:
+- "./gradlew bintrayUpload"
