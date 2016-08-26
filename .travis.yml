@@ -17,10 +17,19 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: ${ACCESS_TOKEN}
-  file: build/libs/bluefin-gradle-plugin-*.jar
+  file: 
+    - "build/libs/bluefin-gradle-plugin-${BLUEFIN_VERSION}.jar"
+    - "build/libs/bluefin-gradle-plugin-${BLUEFIN_VERSION}-sources.jar"
+    - "build/libs/bluefin-gradle-plugin-${BLUEFIN_VERSION}-javadoc.jar"
+
   on:
     tags: true
     all_branches: true
 
 after_deploy:
 - "./gradlew bintrayUpload"
+
+env:
+    global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - BLUEFIN_VERSION: 2.9
